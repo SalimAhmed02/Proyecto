@@ -11,13 +11,13 @@ renamed as (
     select
         id_champion,
         name_champion,
-        position,
+        {{dbt_utils.generate_surrogate_key(['position'])}} as id_position,
         date_realease,
         spring_wins,
         spring_loses,
         summer_wins,
         summer_loses,
-        date_load
+        utc_date_load
 
     from src_champions
 

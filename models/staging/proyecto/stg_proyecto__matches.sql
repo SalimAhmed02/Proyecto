@@ -9,18 +9,19 @@ src_matches as (
 renamed as (
 
     select
-        id,
+        id_match,
         team1,
         team2,
-        result,
+        winner,
         game_date,
-        caster,
+        {{dbt_utils.generate_surrogate_key(['caster'])}} as id_caster,
         mvp,
-        blue,
-        red,
-        side_sel,
-        day,
-        split
+        blue_team,
+        red_team,
+        side_select_team,
+        game_day,
+        split,
+        utc_date_load
 
     from src_matches
 
