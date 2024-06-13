@@ -26,8 +26,14 @@ sources:
                 - unique
                 - not_null
           - name: name
+            tests:
+                - not_null
           - name: position
+            tests:
+                - not_null
           - name: date
+            tests:
+                - not_null
           - name: spring_wins
           - name: spring_loses
           - name: summer_wins
@@ -43,16 +49,36 @@ sources:
                 - unique
                 - not_null
           - name: team1
+            tests:
+                - not_null
           - name: team2
+            tests:
+                - not_null
           - name: result
+            tests:
+                - not_null
           - name: game_date
+            tests:
+                - not_null
           - name: caster
+            tests:
+                - not_null
           - name: mvp
           - name: blue
+            tests:
+                - not_null
           - name: red
+            tests:
+                - not_null
           - name: side_sel
+            tests:
+                - not_null
           - name: day
+            tests:
+                - not_null
           - name: split
+            tests:
+                - not_null
           - name: _fivetran_deleted
           - name: _fivetran_synced
       - name: players
@@ -64,19 +90,49 @@ sources:
                 - unique
                 - not_null
           - name: name
+            tests:
+                - not_null
           - name: nacionality
+            tests:
+                - not_null
           - name: team
+            tests:
+                - not_null
           - name: join_roster
+            tests:
+                - not_null
           - name: position
+            tests:
+                - not_null
           - name: games_played
+            tests:
+                - not_null
           - name: winrate
+            tests:
+                - not_null
           - name: kills
+            tests:
+                - not_null
           - name: deaths
+            tests:
+                - not_null
           - name: assists
+            tests:
+                - not_null
           - name: cspm
+            tests:
+                - not_null
           - name: dpm
+            tests:
+                - not_null
           - name: gpm
+            tests:
+                - not_null
           - name: wpm
+            tests:
+                - not_null
           - name: split
+            tests:
+                - not_null
           - name: _fivetran_deleted
           - name: _fivetran_synced

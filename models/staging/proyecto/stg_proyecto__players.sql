@@ -9,22 +9,23 @@ src_players as (
 renamed as (
 
     select
-        id,
-        name,
-        nacionality,
-        team,
+        id_player,
+        nickname,
+        {{dbt_utils.generate_surrogate_key(['nacionality'])}} as id_nacionality,
+        {{dbt_utils.generate_surrogate_key(['team'])}} as id_team,
         join_roster,
-        position,
+        {{dbt_utils.generate_surrogate_key(['position'])}} as id_position,
         games_played,
         winrate,
         kills,
         deaths,
         assists,
-        cspm,
-        dpm,
-        gpm,
-        wpm,
-        split
+        cs_minute,
+        damage_minute,
+        gold_minute,
+        wards_minute,
+        {{dbt_utils.generate_surrogate_key(['split'])}} as id_split,
+        utc_date_load
 
     from src_players
 

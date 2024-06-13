@@ -9,20 +9,20 @@ src_matches as (
 renamed as (
 
     select
-        id as id_match,
-        team1,
-        team2,
-        result as winner,
-        game_date,
-        caster,
-        mvp,
-        blue as blue_team,
-        red as red_team,
-        side_sel as side_select_team,
-        day as game_day,
-        split,
+        id::INT as id_match,
+        team1::varchar(256) as team1,
+        team2::varchar(256) as team2,
+        IFF(result = true, team1, team2)::varchar(256) as winner,
+        game_date::DATE as game_date,
+        IFF(caster IS NULL, 'Sin Caster', caster)::varchar(256) as caster,
+        IFF(mvp IS NULL, 'Sin MVP', mvp)::varchar(256) as mvp,
+        blue::varchar(256) as blue_team,
+        red::varchar(256) as red_team,
+        side_sel::varchar(256) as side_select_team,
+        day::varchar(256) as game_day,
+        split::varchar(256) as split,
         _fivetran_deleted as date_delete,
-        _fivetran_synced as date_load
+        {{ convert_to_utc('_fivetran_synced') }} as utc_date_load
 
     from src_matches
     ORDER BY id_match
