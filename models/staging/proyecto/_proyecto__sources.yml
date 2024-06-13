@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+
+  - name: proyecto # name of the source 
+    schema: proyecto # this is the schema our raw data lives in
+    database: ALUMNO8_DEV_BRONZE_DB # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 150, period: day}
+      error_after: {count: 300, period: day}
+
+    tables:
+
+      - name: champions
+        description: >
+          Tabla de campeones incuidos en el juego
+        columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+          - name: name
+          - name: position
+          - name: date
+          - name: spring_wins
+          - name: spring_loses
+          - name: summer_wins
+          - name: summer_loses
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+      - name: matches
+        description: >
+          Tabla de partidos jugados en la temporada 2019
+        columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+          - name: team1
+          - name: team2
+          - name: result
+          - name: game_date
+          - name: caster
+          - name: mvp
+          - name: blue
+          - name: red
+          - name: side_sel
+          - name: day
+          - name: split
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
+      - name: players
+        description: >
+          Tabla de jugadores que han jugado en la temporada 2019
+        columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+          - name: name
+          - name: nacionality
+          - name: team
+          - name: join_roster
+          - name: position
+          - name: games_played
+          - name: winrate
+          - name: kills
+          - name: deaths
+          - name: assists
+          - name: cspm
+          - name: dpm
+          - name: gpm
+          - name: wpm
+          - name: split
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
