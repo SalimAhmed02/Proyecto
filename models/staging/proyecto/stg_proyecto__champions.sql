@@ -17,9 +17,11 @@ renamed as (
         spring_loses,
         summer_wins,
         summer_loses,
+        champion_available,
         utc_date_load
 
     from src_champions
+    ORDER BY name_champion
 
 )
 

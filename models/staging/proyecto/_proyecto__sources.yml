@@ -136,3 +136,25 @@ sources:
                 - not_null
           - name: _fivetran_deleted
           - name: _fivetran_synced
+      - name: teams
+        description: >
+          Tabla de equipos incuidos que componen la LEC
+        columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+          - name: name
+            tests:
+                - not_null
+          - name: acronym
+            tests:
+                - not_null
+          - name: foundation_date
+            tests:
+                - not_null
+          - name: champs_titles
+            tests:
+                - not_null
+          - name: _fivetran_deleted
+          - name: _fivetran_synced
