@@ -9,7 +9,7 @@ src_matches as (
 renamed as (
 
     select
-        id::INT as id_match,
+        {{dbt_utils.generate_surrogate_key(['id'])}} as id_match,
         team1::varchar(256) as team1,
         team2::varchar(256) as team2,
         IFF(result = true, team1, team2)::varchar(256) as winner,
@@ -25,7 +25,7 @@ renamed as (
         {{ convert_to_utc('_fivetran_synced') }} as utc_date_load
 
     from src_matches
-    ORDER BY id_match
+    ORDER BY game_date ASC
 
 )
 

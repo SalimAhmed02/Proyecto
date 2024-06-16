@@ -13,7 +13,6 @@ nacionality as (
         nacionality
     from src_player_nacionality
 
-
 )
 
 select * from nacionality

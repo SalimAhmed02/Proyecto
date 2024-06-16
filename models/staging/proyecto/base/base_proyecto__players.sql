@@ -9,7 +9,7 @@ src_players as (
 renamed as (
 
     select
-        id::INT as id_player,
+        {{dbt_utils.generate_surrogate_key(['id'])}} as id_player,
         name::varchar(256) as nickname,
         IFF(nacionality IS NULL, 'Sin Nacionalidad', nacionality)::varchar(256) as nacionality,
         team::varchar(256) as team,
@@ -29,7 +29,7 @@ renamed as (
         {{ convert_to_utc('_fivetran_synced') }} as utc_date_load
 
     from src_players
-    ORDER BY id_player
+    ORDER BY nickname
 
 )
 
