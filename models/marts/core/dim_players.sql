@@ -10,20 +10,13 @@ renamed as (
 
     select
         id_player,
-        nickname,
+        id_nickname,
         id_nacionality,
         id_team,
         join_roster,
+        leave_roster,
+        signing_price_millions,
         id_position,
-        games_played,
-        winrate,
-        kills,
-        deaths,
-        assists,
-        cs_minute,
-        damage_minute,
-        gold_minute,
-        wards_minute,
         id_split,
         utc_date_load
 

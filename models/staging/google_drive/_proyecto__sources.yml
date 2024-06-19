@@ -2,8 +2,8 @@ version: 2
 
 sources:
 
-  - name: proyecto # name of the source 
-    schema: proyecto # this is the schema our raw data lives in
+  - name: google_drive # name of the source 
+    schema: google_drive # this is the schema our raw data lives in
     database: ALUMNO8_DEV_BRONZE_DB # this is the name of our database
 
     quoting:
@@ -19,7 +19,7 @@ sources:
 
       - name: champions
         description: >
-          Tabla de campeones incuidos en el juego
+          Table of champions included in the game
         columns:
           - name: id
             tests:
@@ -38,20 +38,19 @@ sources:
           - name: spring_loses
           - name: summer_wins
           - name: summer_loses
-          - name: _fivetran_deleted
           - name: _fivetran_synced
       - name: matches
         description: >
-          Tabla de partidos jugados en la temporada 2019
+          Table of games played in the 2019 season
         columns:
           - name: id
             tests:
                 - unique
                 - not_null
-          - name: team1
+          - name: team_1
             tests:
                 - not_null
-          - name: team2
+          - name: team_2
             tests:
                 - not_null
           - name: result
@@ -79,11 +78,10 @@ sources:
           - name: split
             tests:
                 - not_null
-          - name: _fivetran_deleted
           - name: _fivetran_synced
       - name: players
         description: >
-          Tabla de jugadores que han jugado en la temporada 2019
+          Table of players who have played in the 2019 season
         columns:
           - name: id
             tests:
@@ -99,6 +97,12 @@ sources:
             tests:
                 - not_null
           - name: join_roster
+            tests:
+                - not_null
+          - name: leave_roster
+            tests:
+                - not_null
+          - name: signing_price
             tests:
                 - not_null
           - name: position
@@ -134,11 +138,10 @@ sources:
           - name: split
             tests:
                 - not_null
-          - name: _fivetran_deleted
           - name: _fivetran_synced
       - name: teams
         description: >
-          Tabla de equipos incuidos que componen la LEC
+          Table of included teams that make up the LEC
         columns:
           - name: id
             tests:
@@ -156,5 +159,4 @@ sources:
           - name: champs_titles
             tests:
                 - not_null
-          - name: _fivetran_deleted
           - name: _fivetran_synced

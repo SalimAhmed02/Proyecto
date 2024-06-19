@@ -2,7 +2,7 @@ with
 
 src_players as (
 
-    select * from {{ source('proyecto', 'players') }}
+    select * from {{ source('google_drive', 'players') }}
 
 ),
 
@@ -12,11 +12,17 @@ renamed as (
         {{dbt_utils.generate_surrogate_key(['id'])}} as id_player,
         name::varchar(256) as nickname,
         IFF(nacionality IS NULL, 'Sin Nacionalidad', nacionality)::varchar(256) as nacionality,
-        team::varchar(256) as team,
+        CASE WHEN team = 'Schalke 04' then 'FC Schalke 04'
+             WHEN team = 'Vitality' then 'Team Vitality'
+             WHEN team = 'Misfits' then 'Misfits Gaming'
+             else team
+        end::varchar(256) as team,
         join_roster::DATE as join_roster,
+        leave_roster::DATE as leave_roster,
+        signing_price::decimal(20,2) as signing_price_millions,
         position::varchar(256) as position,
         games_played::INT as games_played,
-        winrate::INT as winrate,
+        winrate::decimal(20,2) as winrate,
         kills::INT as kills,
         deaths::INT as deaths,
         assists::INT as assists,
@@ -25,7 +31,6 @@ renamed as (
         gpm::float as gold_minute,
         wpm::float as wards_minute,
         split::varchar(256) as split,
-        _fivetran_deleted as date_delete,
         {{ convert_to_utc('_fivetran_synced') }} as utc_date_load
 
     from src_players

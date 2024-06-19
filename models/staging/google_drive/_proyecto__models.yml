@@ -1,0 +1,644 @@
+version: 2
+
+models:
+  - name: base_proyecto__champions
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting champions data"
+    columns:
+      - name: id_champion
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "champion identifier"
+
+      - name: name_champion
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "name of the champion"
+
+      - name: position
+        data_type: varchar(256)
+        description: "champion position"
+
+      - name: date_realease
+        data_type: date
+        description: "release date of champion"
+
+      - name: spring_wins
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "spring wins count"
+
+      - name: spring_loses
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "spring loses count"
+
+      - name: summer_wins
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "summer wins count"
+
+      - name: summer_loses
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "summer loses count"
+
+      - name: champion_available
+        data_type: boolean
+        description: "is champion available"
+
+      - name: utc_date_load
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: base_proyecto__matches
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting matches data"
+    columns:
+      - name: id_match
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "match identifier"
+
+      - name: team1
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "first team"
+
+      - name: team2
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "second team"
+
+      - name: winner_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "winning team"
+
+      - name: game_date
+        tests:
+              - not_null
+        data_type: date
+        description: "date of the game"
+
+      - name: caster
+        data_type: varchar(256)
+        description: "game caster"
+
+      - name: player_mvp
+        data_type: varchar(256)
+        description: "MVP player"
+
+      - name: blue_team
+        data_type: varchar(256)
+        description: "blue team"
+
+      - name: red_team
+        data_type: varchar(256)
+        description: "red team"
+
+      - name: side_select_team
+        data_type: varchar(256)
+        description: "side selected team"
+
+      - name: game_day
+        data_type: varchar(256)
+        description: "day of the game"
+
+      - name: split
+        data_type: varchar(256)
+        description: "season split"
+
+      - name: utc_date_load
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: base_proyecto__players
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting players data"
+    columns:
+      - name: id_player
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "player identifier"
+
+      - name: nickname
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "player nickname"
+
+      - name: nacionality
+        data_type: varchar(256)
+        description: "player nationality"
+
+      - name: team
+        data_type: varchar(256)
+        description: "player's team"
+
+      - name: join_roster
+        data_type: date
+        description: "roster join date"
+
+      - name: leave_roster
+        data_type: date
+        description: "roster leave date"
+
+      - name: signing_price_millions
+        data_type: number(38,2)
+        description: "signing price in millions"
+
+      - name: position
+        data_type: varchar(256)
+        description: "player position"
+
+      - name: games_played
+        data_type: number(38,2)
+        description: "games played count"
+
+      - name: winrate
+        data_type: number(38,2)
+        description: "win rate percentage"
+
+      - name: kills
+        data_type: number(38,2)
+        description: "number of kills"
+
+      - name: deaths
+        data_type: number(38,2)
+        description: "number of deaths"
+
+      - name: assists
+        data_type: number(38,2)
+        description: "number of assists"
+
+      - name: cs_minute
+        data_type: float
+        description: "creep score per minute"
+
+      - name: damage_minute
+        data_type: float
+        description: "damage dealt per minute"
+
+      - name: gold_minute
+        data_type: float
+        description: "gold earned per minute"
+
+      - name: wards_minute
+        data_type: float
+        description: "wards placed per minute"
+
+      - name: split
+        data_type: varchar(256)
+        description: "season split"
+
+      - name: utc_date_load
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: stg_proyecto__casters
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting casters data"
+    columns:
+      - name: id_caster
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "caster identifier"
+
+      - name: caster
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "caster name"
+
+  - name: stg_proyecto__champions
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting champions data"
+    columns:
+      - name: id_champion
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "champion identifier"
+
+      - name: name_champion
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "name of the champion"
+
+      - name: id_position
+        tests:
+              - not_null
+              - relationships:
+                  to: ref('stg_proyecto__positions')
+                  field: id_position
+        data_type: varchar(256)
+        description: "position identifier"
+
+      - name: date_realease
+        tests:
+              - not_null
+        data_type: date
+        description: "release date of champion"
+
+      - name: spring_wins
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "spring wins count"
+
+      - name: spring_loses
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "spring loses count"
+
+      - name: summer_wins
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "summer wins count"
+
+      - name: summer_loses
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "summer loses count"
+
+      - name: champion_available
+        tests:
+              - not_null
+        data_type: boolean
+        description: "is champion available"
+
+      - name: utc_date_load
+        tests:
+              - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: stg_proyecto__matches
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting matches data"
+    columns:
+      - name: id_match
+        tests:
+              - not_null
+        data_type: number(38,2)
+        description: "match identifier"
+
+      - name: id_team1
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "first team identifier"
+
+      - name: id_team2
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "second team identifier"
+
+      - name: id_winner_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "winning team identifier"
+
+      - name: game_date
+        tests:
+              - not_null
+        data_type: date
+        description: "date of the game"
+
+      - name: id_caster
+        tests:
+              - not_null
+              - relationships:
+                  to: ref('stg_proyecto__casters')
+                  field: id_caster
+        data_type: varchar(256)
+        description: "caster identifier"
+
+      - name: id_player_mvp
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "MVP player identifier"
+
+      - name: id_blue_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "blue team identifier"
+
+      - name: id_red_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "red team identifier"
+
+      - name: id_side_select_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "side select team identifier"
+
+      - name: game_day
+        data_type: varchar(256)
+        description: "day of the game"
+
+      - name: id_split
+        tests:
+              - not_null
+              - relationships:
+                  to: ref('stg_proyecto__split_seasons')
+                  field: id_split
+        data_type: varchar(256)
+        description: "split identifier"
+
+      - name: utc_date_load
+        tests:
+              - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: stg_proyecto__player_nacionality
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player nationalities"
+    columns:
+      - name: id_nacionality
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "nationality identifier"
+
+      - name: nacionality
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "nationality name"
+
+  - name: stg_proyecto__player_nickname
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player nicknames"
+    columns:
+      - name: id_nickname
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "nickname identifier"
+
+      - name: nickname
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "player nickname"
+
+  - name: stg_proyecto__players
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player data"
+    columns:
+      - name: id_player
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "player identifier"
+
+      - name: id_nickname
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('stg_proyecto__player_nickname')
+                  field: id_nickname
+        data_type: varchar(256)
+        description: "nickname identifier"
+
+      - name: id_nacionality
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('stg_proyecto__player_nacionality')
+                  field: id_nacionality
+        data_type: varchar(256)
+        description: "nationality identifier"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('stg_proyecto__teams')
+                  field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: join_roster
+        tests:
+          - not_null
+        data_type: date
+        description: "roster join date"
+
+      - name: leave_roster
+        tests:
+          - not_null
+        data_type: date
+        description: "roster leave date"
+
+      - name: signing_price_millions
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "signing price in millions"
+
+      - name: id_position
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('stg_proyecto__positions')
+                  field: id_position
+        data_type: varchar(256)
+        description: "player position identifier"
+
+      - name: games_played
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "games played count"
+
+      - name: winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "win rate percentage"
+
+      - name: kills
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "number of kills"
+
+      - name: deaths
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "number of deaths"
+
+      - name: assists
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "number of assists"
+
+      - name: cs_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "creep score per minute"
+
+      - name: damage_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "damage dealt per minute"
+
+      - name: gold_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "gold earned per minute"
+
+      - name: wards_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "wards placed per minute"
+
+      - name: id_split
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('stg_proyecto__split_seasons')
+                  field: id_split
+        data_type: varchar(256)
+        description: "split identifier"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: stg_proyecto__positions
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting positions data"
+    columns:
+      - name: id_position
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "position identifier"
+
+      - name: position
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "position name"
+
+  - name: stg_proyecto__split_seasons
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting split seasons data"
+    columns:
+      - name: id_split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split identifier"
+
+      - name: split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split name"
+
+  - name: stg_proyecto__teams
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting teams data"
+    columns:
+      - name: id_team
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: id_acronym
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "acronym identifier"
+
+      - name: acronym_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "acronym name"
+
+      - name: foundation_date
+        tests:
+          - not_null
+        data_type: date
+        description: "foundation date of team"
+
+      - name: champs_titles
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "number of championship titles"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"

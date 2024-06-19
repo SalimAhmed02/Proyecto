@@ -1,0 +1,425 @@
+version: 2
+
+models:
+  - name: int_split_clasification
+    config:
+      contract:
+        enforced: true
+    description: "Intermediate table for split classification"
+    columns:
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"
+
+      - name: id_split
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__split_seasons')
+              field: id_split
+        data_type: varchar(256)
+        description: "split identifier"
+
+  - name: int_stats_champions
+    config:
+      contract:
+        enforced: true
+    description: "Intermediate table for champion statistics"
+    columns:
+      - name: id_champion
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__champions')
+              field: id_champion
+        data_type: varchar(256)
+        description: "champion identifier"
+
+      - name: name_champion
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "champion name"
+
+      - name: spring_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "spring wins"
+
+      - name: spring_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "spring losses"
+
+      - name: summer_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "summer wins"
+
+      - name: summer_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "summer losses"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"
+
+      - name: total_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total games"
+
+      - name: spring_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "spring games"
+
+      - name: summer_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "summer games"
+
+      - name: spring_winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "spring winrate"
+
+      - name: summer_winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "summer winrate"
+
+      - name: total_winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total winrate"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "load timestamp (UTC)"
+
+  - name: int_stats_players
+    config:
+      contract:
+        enforced: true
+    description: "Intermediate table for player statistics"
+    columns:
+      - name: id_player
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__players')
+              field: id_player
+        data_type: varchar(256)
+        description: "player identifier"
+
+      - name: id_nickname
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__player_nickname')
+              field: id_nickname
+        data_type: varchar(256)
+        description: "player nickname identifier"
+
+      - name: id_position
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__positions')
+              field: id_position
+        data_type: varchar(256)
+        description: "position identifier"
+
+      - name: games_played
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "games played"
+
+      - name: winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "winrate"
+
+      - name: wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "wins"
+
+      - name: loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "losses"
+
+      - name: kills
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "kills"
+
+      - name: deaths
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "deaths"
+
+      - name: assists
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "assists"
+
+      - name: kda
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "KDA (Kill/Death/Assist ratio)"
+
+      - name: cs_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "CS (Creep Score) per minute"
+
+      - name: damage_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "damage per minute"
+
+      - name: gold_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "gold per minute"
+
+      - name: wards_minute
+        tests:
+          - not_null
+        data_type: float
+        description: "wards placed per minute"
+
+      - name: id_split
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__split_seasons')
+              field: id_split
+        data_type: varchar(256)
+        description: "split identifier"
+
+      - name: split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split name"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "load timestamp (UTC)"
+
+  - name: int_stats_teams
+    config:
+      contract:
+        enforced: true
+    description: "Intermediate table for team statistics"
+    columns:
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: id_acronym
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team acronym identifier"
+
+      - name: local_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "local games played"
+
+      - name: away_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "away games played"
+
+      - name: total_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total games played"
+
+      - name: local_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "local wins"
+
+      - name: local_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "local losses"
+
+      - name: away_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "away wins"
+
+      - name: away_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "away losses"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"
+
+      - name: local_winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "local winrate"
+
+      - name: away_winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "away winrate"
+
+      - name: total_winrate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total winrate"
+
+      - name: blue_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "games played as blue side"
+
+      - name: red_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "games played as red side"
+
+      - name: side_select_games
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "games with side selection"
+
+      - name: blue_rate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "win rate as blue side"
+
+      - name: red_rate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "win rate as red side"
+
+      - name: side_select_rate
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "win rate with side selection"
+
+      - name: id_split
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_proyecto__split_seasons')
+              field: id_split
+        data_type: varchar(256)
+        description: "split identifier"
+
+      - name: split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split name"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "load timestamp (UTC)"
