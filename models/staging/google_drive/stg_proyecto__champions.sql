@@ -12,6 +12,7 @@ renamed as (
         id_champion,
         name_champion,
         {{dbt_utils.generate_surrogate_key(['position'])}} as id_position,
+        position,
         date_realease,
         spring_wins,
         spring_loses,
