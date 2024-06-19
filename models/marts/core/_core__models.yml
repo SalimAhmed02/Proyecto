@@ -1,0 +1,797 @@
+version: 2
+
+models:
+  - name: dim_casters
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting caster data"
+    columns:
+      - name: id_caster
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "caster identifier"
+
+      - name: caster
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "caster name"
+
+  - name: dim_champions
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting champion data"
+    columns:
+      - name: id_champion
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "champion identifier"
+
+      - name: name_champion
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "champion name"
+
+      - name: id_position
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('dim_positions')
+                  field: id_position
+        data_type: varchar(256)
+        description: "position identifier"
+
+      - name: date_realease
+        tests:
+          - not_null
+        data_type: date
+        description: "release date"
+
+      - name: champion_available
+        tests:
+          - not_null
+        data_type: boolean
+        description: "is champion available"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: dim_date
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting date dimension data"
+    columns:
+      - name: date_day
+        tests:
+          - not_null
+        data_type: date
+        description: "current date"
+
+      - name: prior_date_day
+        tests:
+          - not_null
+        data_type: date
+        description: "previous date"
+
+      - name: next_date_day
+        tests:
+          - not_null
+        data_type: date
+        description: "next date"
+
+      - name: prior_year_date_day
+        tests:
+          - not_null
+        data_type: date
+        description: "same date last year"
+
+      - name: prior_year_over_year_date_day
+        tests:
+          - not_null
+        data_type: date
+        description: "YoY same date"
+
+      - name: day_of_week
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "day of the week"
+
+      - name: day_of_week_iso
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "ISO day of week"
+
+      - name: day_of_week_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "name of the week day"
+
+      - name: day_of_week_name_short
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "short name of week day"
+
+      - name: day_of_month
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "day of the month"
+
+      - name: day_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "day of the year"
+
+      - name: week_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "start date of week"
+
+      - name: week_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "end date of week"
+
+      - name: prior_year_week_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "start date same week last year"
+
+      - name: prior_year_week_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "end date same week last year"
+
+      - name: week_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "week number of year"
+
+      - name: iso_week_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "ISO week start date"
+
+      - name: iso_week_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "ISO week end date"
+
+      - name: prior_year_iso_week_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "ISO start date same week last year"
+
+      - name: prior_year_iso_week_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "ISO end date same week last year"
+
+      - name: iso_week_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "ISO week number of year"
+
+      - name: prior_year_week_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "week number same week last year"
+
+      - name: prior_year_iso_week_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "ISO week number same week last year"
+
+      - name: month_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "month number of year"
+
+      - name: month_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "name of the month"
+
+      - name: month_name_short
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "short name of month"
+
+      - name: month_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "start date of month"
+
+      - name: month_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "end date of month"
+
+      - name: prior_year_month_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "start date same month last year"
+
+      - name: prior_year_month_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "end date same month last year"
+
+      - name: quarter_of_year
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "quarter number of year"
+
+      - name: quarter_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "start date of quarter"
+
+      - name: quarter_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "end date of quarter"
+
+      - name: year_number
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "year number"
+
+      - name: year_start_date
+        tests:
+          - not_null
+        data_type: date
+        description: "start date of year"
+
+      - name: year_end_date
+        tests:
+          - not_null
+        data_type: date
+        description: "end date of year"
+
+  - name: dim_player_nacionality
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player nationality data"
+    columns:
+      - name: id_nacionality
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "nationality identifier"
+
+      - name: nacionality
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "player nationality"
+
+  - name: dim_player_nickname
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player nickname data"
+    columns:
+      - name: id_nickname
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "nickname identifier"
+
+      - name: nickname
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "player nickname"
+
+  - name: dim_players
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player data"
+    columns:
+      - name: id_player
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "player identifier"
+
+      - name: id_nickname
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('dim_player_nickname')
+                  field: id_nickname
+        data_type: varchar(256)
+        description: "nickname identifier"
+
+      - name: id_nacionality
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('dim_player_nacionality')
+                  field: id_nacionality
+        data_type: varchar(256)
+        description: "nationality identifier"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('dim_teams')
+                  field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: join_roster
+        tests:
+          - not_null
+        data_type: date
+        description: "join roster date"
+
+      - name: leave_roster
+        tests:
+          - not_null
+        data_type: date
+        description: "leave roster date"
+
+      - name: signing_price_millions
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "signing price in millions"
+
+      - name: id_position
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('dim_positions')
+                  field: id_position
+        data_type: varchar(256)
+        description: "position identifier"
+
+      - name: id_split
+        tests:
+          - not_null
+          - relationships:
+                  to: ref('dim_split_seasons')
+                  field: id_split
+        data_type: varchar(256)
+        description: "split identifier"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: dim_positions
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting position data"
+    columns:
+      - name: id_position
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "position identifier"
+
+      - name: position
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "position name"
+
+  - name: dim_split_seasons
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting split season data"
+    columns:
+      - name: id_split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split season identifier"
+
+      - name: split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split season name"
+
+  - name: dim_teams
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting team data"
+    columns:
+      - name: id_team
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "name of team"
+
+      - name: id_acronym
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "acronym identifier"
+
+      - name: acronym_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team acronym"
+
+      - name: foundation_date
+        tests:
+          - not_null
+        data_type: date
+        description: "foundation date"
+
+      - name: champs_titles
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "championship titles"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: fct_matches
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting match data"
+    columns:
+      - name: id_match
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "match identifier"
+
+      - name: id_team1
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team 1 identifier"
+
+      - name: id_team2
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team 2 identifier"
+
+      - name: id_winner_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "winner team identifier"
+
+      - name: game_date
+        tests:
+          - not_null
+        data_type: date
+        description: "date of the game"
+
+      - name: id_caster
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_casters')
+              field: id_caster
+        data_type: varchar(256)
+        description: "caster identifier"
+
+      - name: id_player_mvp
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_players')
+              field: id_player
+        data_type: varchar(256)
+        description: "MVP player identifier"
+
+      - name: id_blue_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_acronym
+        data_type: varchar(256)
+        description: "blue team identifier"
+
+      - name: id_red_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_acronym
+        data_type: varchar(256)
+        description: "red team identifier"
+
+      - name: id_side_select_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_acronym
+        data_type: varchar(256)
+        description: "side select team identifier"
+
+      - name: game_day
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "day of the game"
+
+      - name: id_split
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_split_seasons')
+              field: id_split
+        data_type: varchar(256)
+        description: "split season identifier"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+        data_type: timestamp_tz
+        description: "UTC load date"
+
+  - name: fct_player_signing
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting player signing data"
+    columns:
+      - name: id_nickname
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_player_nickname')
+              field: id_nickname
+        data_type: varchar(256)
+        description: "nickname identifier"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: join_roster
+        tests:
+          - not_null
+        data_type: date
+        description: "date joined roster"
+
+      - name: leave_roster
+        tests:
+          - not_null
+        data_type: date
+        description: "date left roster"
+
+      - name: signing_price_millions
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "signing price in millions"
+
+  - name: fct_spring_clasification
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting spring classification data"
+    columns:
+      - name: place
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "placement"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"
+
+  - name: fct_spring_playoffs
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting spring playoffs data"
+    columns:
+      - name: place
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "placement"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"
+
+  - name: fct_summer_clasification
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting summer classification data"
+    columns:
+      - name: place
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "placement"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"
+
+  - name: fct_summer_playoffs
+    config:
+      contract:
+        enforced: true
+    description: "Table collecting summer playoffs data"
+    columns:
+      - name: place
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "placement"
+
+      - name: id_team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_teams')
+              field: id_team
+        data_type: varchar(256)
+        description: "team identifier"
+
+      - name: team_name
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
+
+      - name: total_wins
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total wins"
+
+      - name: total_loses
+        tests:
+          - not_null
+        data_type: number(38,2)
+        description: "total losses"

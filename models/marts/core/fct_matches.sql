@@ -16,11 +16,11 @@ renamed as (
         game_date,
         id_caster,
         id_player_mvp,
-        blue_team,
-        red_team,
-        side_select_team,
+        id_blue_team,
+        id_red_team,
+        id_side_select_team,
         game_day,
-        split,
+        id_split,
         utc_date_load
 
     from src_matches

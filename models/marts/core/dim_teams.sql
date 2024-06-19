@@ -11,6 +11,7 @@ renamed as (
     select 
         id_team,
         team_name,
+        id_acronym,
         acronym_name,
         foundation_date,
         champs_titles,

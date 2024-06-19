@@ -10,10 +10,12 @@ renamed as (
 
     select
         id_player,
-        nickname,
+        {{dbt_utils.generate_surrogate_key(['nickname'])}} as id_nickname,
         {{dbt_utils.generate_surrogate_key(['nacionality'])}} as id_nacionality,
         {{dbt_utils.generate_surrogate_key(['team'])}} as id_team,
         join_roster,
+        leave_roster,
+        signing_price_millions,
         {{dbt_utils.generate_surrogate_key(['position'])}} as id_position,
         games_played,
         winrate,

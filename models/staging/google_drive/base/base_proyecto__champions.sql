@@ -2,23 +2,22 @@ with
 
 src_champions as (
 
-    select * from {{ source('proyecto', 'champions') }}
+    select * from {{ source('google_drive', 'champions') }}
 
 ),
 
 renamed as (
 
     select
-        {{dbt_utils.generate_surrogate_key(['id'])}} as id_champion,
+        {{dbt_utils.generate_surrogate_key(['name'])}} as id_champion,
         name::varchar(256) as name_champion,
-        position::varchar(256) as position,
+        IFF(position = 'Mid', 'Middle', position)::varchar(256) as position,
         date::DATE as date_realease,
         IFF(spring_wins = 'null', 0, spring_wins)::INT as spring_wins,
         IFF(spring_loses = 'null', 0, spring_loses)::INT as spring_loses,
         IFF(summer_wins = 'null', 0, summer_wins)::INT as summer_wins,
         IFF(summer_loses = 'null', 0, spring_wins)::INT as summer_loses,
-        IFF(date_realease > '2019-01-01', false, true)::boolean as champion_available,
-        _fivetran_deleted as date_delete,
+        IFF(date_realease > '2019-08-17', false, true)::boolean as champion_available,
         {{ convert_to_utc('_fivetran_synced') }} as utc_date_load
 
     from src_champions
