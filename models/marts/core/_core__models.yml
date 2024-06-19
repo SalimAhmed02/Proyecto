@@ -478,7 +478,7 @@ models:
       - name: champs_titles
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "championship titles"
 
       - name: utc_date_load
@@ -496,7 +496,7 @@ models:
       - name: id_match
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "match identifier"
 
       - name: id_team1
@@ -545,8 +545,8 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_players')
-              field: id_player
+              to: ref('dim_player_nickname')
+              field: id_nickname
         data_type: varchar(256)
         description: "MVP player identifier"
 
@@ -617,7 +617,7 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_teams')
+              to: ref('dim_players')
               field: id_team
         data_type: varchar(256)
         description: "team identifier"
@@ -649,7 +649,7 @@ models:
       - name: place
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "placement"
 
       - name: id_team
@@ -670,13 +670,13 @@ models:
       - name: total_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total wins"
 
       - name: total_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total losses"
 
   - name: fct_spring_playoffs
@@ -688,7 +688,7 @@ models:
       - name: place
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "placement"
 
       - name: id_team
@@ -709,13 +709,13 @@ models:
       - name: total_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total wins"
 
       - name: total_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total losses"
 
   - name: fct_summer_clasification
@@ -727,7 +727,7 @@ models:
       - name: place
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "placement"
 
       - name: id_team
@@ -748,13 +748,13 @@ models:
       - name: total_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total wins"
 
       - name: total_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total losses"
 
   - name: fct_summer_playoffs
@@ -766,7 +766,7 @@ models:
       - name: place
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "placement"
 
       - name: id_team
@@ -787,11 +787,11 @@ models:
       - name: total_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total wins"
 
       - name: total_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total losses"

@@ -25,55 +25,55 @@ models:
       - name: total_games
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total games played by champion"
 
       - name: total_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total wins by champion"
 
       - name: total_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "total losses by champion"
 
       - name: spring_games
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "games played by champion in spring season"
 
       - name: spring_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "wins by champion in spring season"
 
       - name: spring_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "losses by champion in spring season"
 
       - name: summer_games
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "games played by champion in summer season"
 
       - name: summer_wins
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "wins by champion in summer season"
 
       - name: summer_loses
         tests:
           - not_null
-        data_type: number(38,2)
+        data_type: number(38,0)
         description: "losses by champion in summer season"
 
       - name: total_winrate
@@ -136,19 +136,19 @@ models:
     - name: games_played
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total games played"
 
     - name: wins
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total wins"
 
     - name: loses
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total losses"
 
     - name: winrate
@@ -160,19 +160,19 @@ models:
     - name: kills
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total kills"
 
     - name: deaths
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total deaths"
 
     - name: assists
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total assists"
 
     - name: kda
@@ -250,55 +250,55 @@ models:
     - name: total_games
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total games played"
 
     - name: local_games
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Local games played"
 
     - name: away_games
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Away games played"
 
     - name: total_wins
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total wins"
 
     - name: total_loses
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Total losses"
 
     - name: local_wins
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Local wins"
 
     - name: local_loses
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Local losses"
 
     - name: away_wins
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Away wins"
 
     - name: away_loses
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Away losses"
 
     - name: total_winrate
@@ -322,19 +322,19 @@ models:
     - name: blue_games
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Games played on blue side"
 
     - name: red_games
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Games played on red side"
 
     - name: side_select_games
       tests:
         - not_null
-      data_type: number(38,2)
+      data_type: number(38,0)
       description: "Games with side selection"
 
     - name: blue_rate

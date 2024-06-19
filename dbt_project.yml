@@ -46,6 +46,11 @@ models:
       +materialized: view
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}SILVER_DB"
       +schema: google_drive
+
+    intermediate:
+      +materialized: view
+      +database: "{{ env_var('DBT_ENVIRONMENTS') }}SILVER_DB"
+      +schema: intermediate
       
     marts:
       +materialized: table
