@@ -46,6 +46,12 @@ models:
         data_type: varchar(256)
         description: "position identifier"
 
+      - name: position
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "position of the champion"
+
       - name: date_realease
         tests:
           - not_null
@@ -343,6 +349,12 @@ models:
         data_type: varchar(256)
         description: "nickname identifier"
 
+      - name: nickname
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "nickname"
+
       - name: id_nacionality
         tests:
           - not_null
@@ -352,6 +364,12 @@ models:
         data_type: varchar(256)
         description: "nationality identifier"
 
+      - name: nacionality
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "nationality"
+
       - name: id_team
         tests:
           - not_null
@@ -360,6 +378,12 @@ models:
                   field: id_team
         data_type: varchar(256)
         description: "team identifier"
+
+      - name: team
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "team name"
 
       - name: join_roster
         tests:
@@ -388,6 +412,12 @@ models:
         data_type: varchar(256)
         description: "position identifier"
 
+      - name: position
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "position name"
+
       - name: id_split
         tests:
           - not_null
@@ -396,6 +426,12 @@ models:
                   field: id_split
         data_type: varchar(256)
         description: "split identifier"
+
+      - name: split
+        tests:
+          - not_null
+        data_type: varchar(256)
+        description: "split name"
 
       - name: utc_date_load
         tests:
@@ -508,6 +544,12 @@ models:
         data_type: varchar(256)
         description: "team 1 identifier"
 
+      - name: team1
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "first team name"
+
       - name: id_team2
         tests:
           - not_null
@@ -517,6 +559,12 @@ models:
         data_type: varchar(256)
         description: "team 2 identifier"
 
+      - name: team2
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "second team name"
+
       - name: id_winner_team
         tests:
           - not_null
@@ -525,6 +573,12 @@ models:
               field: id_team
         data_type: varchar(256)
         description: "winner team identifier"
+
+      - name: winner_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "winning team name"
 
       - name: game_date
         tests:
@@ -541,6 +595,12 @@ models:
         data_type: varchar(256)
         description: "caster identifier"
 
+      - name: caster
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "caster name"
+
       - name: id_player_mvp
         tests:
           - not_null
@@ -549,6 +609,12 @@ models:
               field: id_nickname
         data_type: varchar(256)
         description: "MVP player identifier"
+
+      - name: player_mvp
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "MVP player name"
 
       - name: id_blue_team
         tests:
@@ -559,6 +625,12 @@ models:
         data_type: varchar(256)
         description: "blue team identifier"
 
+      - name: blue_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "blue team name"
+
       - name: id_red_team
         tests:
           - not_null
@@ -568,6 +640,12 @@ models:
         data_type: varchar(256)
         description: "red team identifier"
 
+      - name: red_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "red team name"
+
       - name: id_side_select_team
         tests:
           - not_null
@@ -576,6 +654,12 @@ models:
               field: id_acronym
         data_type: varchar(256)
         description: "side select team identifier"
+
+      - name: side_select_team
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "side select team name"
 
       - name: game_day
         tests:
@@ -591,6 +675,12 @@ models:
               field: id_split
         data_type: varchar(256)
         description: "split season identifier"
+
+      - name: split
+        tests:
+              - not_null
+        data_type: varchar(256)
+        description: "split name"
 
       - name: utc_date_load
         tests:

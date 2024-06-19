@@ -12,6 +12,7 @@ renamed as (
         id_champion,
         name_champion,
         id_position,
+        position,
         date_realease,
         champion_available,
         utc_date_load

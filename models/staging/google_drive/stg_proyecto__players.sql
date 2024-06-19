@@ -11,12 +11,16 @@ renamed as (
     select
         id_player,
         {{dbt_utils.generate_surrogate_key(['nickname'])}} as id_nickname,
+        nickname,
         {{dbt_utils.generate_surrogate_key(['nacionality'])}} as id_nacionality,
+        nacionality,
         {{dbt_utils.generate_surrogate_key(['team'])}} as id_team,
+        team,
         join_roster,
         leave_roster,
         signing_price_millions,
         {{dbt_utils.generate_surrogate_key(['position'])}} as id_position,
+        position,
         games_played,
         winrate,
         kills,
@@ -27,6 +31,7 @@ renamed as (
         gold_minute,
         wards_minute,
         {{dbt_utils.generate_surrogate_key(['split'])}} as id_split,
+        split,
         utc_date_load
 
     from src_players
