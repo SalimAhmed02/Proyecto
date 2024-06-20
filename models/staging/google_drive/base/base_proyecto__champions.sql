@@ -2,7 +2,8 @@ with
 
 src_champions as (
 
-    select * from {{ source('google_drive', 'champions') }}
+    select * from {{ source('snapshots', 'snapshot_new_champion') }}
+    where DBT_VALID_TO IS NULL
 
 ),
 

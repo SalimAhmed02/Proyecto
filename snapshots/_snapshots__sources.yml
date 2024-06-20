@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+
+  - name: snapshots # name of the source 
+    schema: snapshots # this is the schema our raw data lives in
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}SILVER_DB" # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    # freshness:
+    #  warn_after: {count: 24, period: hour}
+    #   error_after: {count: 48, period: hour}
+
+    tables:
+      
+      - name: snapshot_new_champion
+        description: >
+          Table of champions included in the game
+        columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+          - name: name
+            tests:
+                - not_null
+          - name: position
+            tests:
+                - not_null
+          - name: date
+            tests:
+                - not_null
+          - name: spring_wins
+          - name: spring_loses
+          - name: summer_wins
+          - name: summer_loses
+          - name: _fivetran_synced
+            tests:
+              - not_null
+          - name: DBT_SCD_ID
+            tests:
+              - not_null
+          - name: DBT_UPDATED_AT
+            tests:
+              - not_null
+          - name: DBT_VALID_FROM
+            tests:
+              - not_null
+          - name: DBT_VALID_TO
+          
