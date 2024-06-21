@@ -124,6 +124,12 @@ models:
       data_type: varchar(256)
       description: "Nickname identifier"
 
+    - name: nickname
+      tests:
+        - not_null
+      data_type: varchar(256)
+      description: "nickname player"
+
     - name: id_position
       tests:
         - not_null
@@ -132,6 +138,12 @@ models:
             field: id_position
       data_type: varchar(256)
       description: "Position identifier"
+
+    - name: position
+      tests:
+        - not_null
+      data_type: varchar(256)
+      description: "position player"
 
     - name: games_played
       tests:

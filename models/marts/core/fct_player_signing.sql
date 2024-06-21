@@ -3,7 +3,9 @@ with
 src_players as (
 
     select id_nickname,
+        nickname,
         id_team,
+        team,
         join_roster,
         leave_roster,
         signing_price_millions
@@ -15,7 +17,9 @@ renamed as (
 
     select distinct
         id_nickname,
+        nickname,
         id_team,
+        team,
         join_roster,
         leave_roster,
         signing_price_millions
