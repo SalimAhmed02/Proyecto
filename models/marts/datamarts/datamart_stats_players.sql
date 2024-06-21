@@ -11,7 +11,9 @@ stats_players as (
     select
         id_player,
         id_nickname,
+        nickname,
         id_position,
+        position,
         games_played,
         wins,
         loses,

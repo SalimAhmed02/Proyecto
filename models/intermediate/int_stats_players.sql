@@ -17,7 +17,9 @@ renamed as (
     select
         id_player,
         id_nickname,
+        nickname,
         id_position,
+        position,
         games_played,
         winrate,
         ((winrate * games_played) / 100)::INT as wins,
